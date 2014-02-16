@@ -7,7 +7,6 @@ chrome.tabs.getSelected(null, function(tab) {
 // });
 $( function () { 
   $("#search-button").click(function() {
-      alert("test");
      $.get(
       "https://www.googleapis.com/youtube/v3/playlists?part=snippet&channelId=UC_x5XG1OV2P6uZZ5FSM9Ttw&key=AIzaSyCUvP3-ZZ_zLOY2eMODHbNrDKR0Mwd20r4",
       {},
