@@ -4,8 +4,6 @@
     <script src="js/angular.min.js"></script>
     <script src="js/controllers.js"></script>
 
-    <script src="popup.js"></script>
-
     <link rel="stylesheet" href="css/main.css">
 
     <!-- Bootstrap core JavaScript
@@ -23,6 +21,8 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 
+    <script src="popup.js"></script>
+
     <title>Watch List</title>
 
   </head>
@@ -33,6 +33,10 @@
         <a class="brand" href="#"><img src="Watch-List-48.png"/></a>
       </div>
     </nav>
+
+    <div id="buttons">
+      <label> <input id="query" value='cats' type="text"/><button id="search-button">Search</button></label>
+    </div>
 
     <section>
       <table class="table table-hover">
@@ -52,5 +56,7 @@
         </tbody>
       </table>
     </section>
+
+    <div id="search-container"></div>
   </body>
 </html>

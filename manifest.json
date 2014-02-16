@@ -3,12 +3,21 @@
 
   "name": "Watch List Extension",
   "description": "A new wonderful way to watch YouTube in an organized way. Keep track of the playlists you started watching and resume them rapidly.",
-  "version": "0.1",
+  "version": "0.1.1",
 
   "permissions": [
+    "tabs",
+    "identity",
     "http://www.youtube.com/*list=*",
-    "tabs"
+    "https://www.googleapis.com/*"
   ],
+   
+  "oauth2": {
+    "client_id": "645115097786-ei0qet7620l0mnlmclps1829hphsk9d8.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/youtube.readonly"
+    ]
+  },
 
   "icons": { "16":  "Watch-List-16.png",
              "48":  "Watch-List-48.png",
