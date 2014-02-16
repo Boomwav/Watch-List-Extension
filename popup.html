@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="watchListApp" style="min-width:800px;">
+<html ng-app="watchListApp" ng-csp style="min-width:800px;">
   <head>
     <script src="js/angular.min.js"></script>
     <script src="js/controllers.js"></script>
@@ -44,14 +44,14 @@
           <tr>
             <th>Playlist</th>
             <th>Channel</th>
-            <th>Progress</th>
+            <th>Published At</th>
           </tr>
         </thead>
         <tbody>
           <tr ng-repeat="playlist in playlists">
-            <td><a href="http://www.youtube.com/watch?v=wXFIgvmYKBo&list=PLG57_J3QmeWuQZpnBgCXHJOfGd5ufVfjd&feature=share&index=1" target="_blank">{{playlist.title}}</a></td>
-            <td><a href="{{playlist.channelUrl}}">{{playlist.channelName}}</a></td>
-            <td>{{playlist.progress}}</td>
+            <td><a href="http://www.youtube.com/playlist?list={{playlist.id}}" target="_blank">{{playlist.snippet.title}}</a></td>
+            <td><a href="http://www.youtube.com/channel/{{playlist.snippet.channelId}}" target="_blank">{{playlist.snippet.channelTitle}}</a></td>
+            <td>{{playlist.snippet.publishedAt}}</td>
           </tr>
         </tbody>
       </table>

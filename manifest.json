@@ -7,8 +7,8 @@
 
   "permissions": [
     "tabs",
-    "identity",
-    "http://www.youtube.com/*list=*"
+    "http://www.youtube.com/*list=*",
+    "https://www.googleapis.com/youtube/v3/"
   ],
    
   "icons": { "16":  "Watch-List-16.png",
