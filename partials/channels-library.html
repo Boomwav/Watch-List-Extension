@@ -1,0 +1,18 @@
+    <section>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Playlist</th>
+                <th>Channel</th>
+                <th>Published At</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="playlist in playlists">
+                <td><a href="http://www.youtube.com/playlist?list={{playlist.id}}" target="_blank">{{playlist.snippet.title}}</a></td>
+                <td><a ng-href="#/channels/{{playlist.snippet.channelId}}">{{playlist.snippet.channelTitle}}</a></td>
+                <td>{{playlist.snippet.publishedAt}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
