@@ -1,8 +1,9 @@
 body 
 {
-	min-width=300px !important;
+	min-width:300px !important;
 }
 
+/* Removing the padding from the .navbar-brand to allow the logo to work. */
 .navbar-brand {
   padding: 0 !important;
 }

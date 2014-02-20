@@ -6,6 +6,7 @@ watchlistControllers.controller('ChannelLibraryCtrl', ['$scope', '$http',
 
         $http.get(dataurl).success(function(data){
             $scope.playlists = data.items;
+            $scope.result = JSON.stringify(data);
         });
     }
 ]);
