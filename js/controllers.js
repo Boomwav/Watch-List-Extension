@@ -11,7 +11,7 @@ watchlistControllers.controller('ChannelLibraryCtrl', ['$scope', '$http',
     }
 ]);
 
-watchlistControllers.controller('ChannelDetailCtrl', ['$scope', '$routeParams', '$http',
+watchlistControllers.controller('ChannelDetailsCtrl', ['$scope', '$routeParams', '$http',
     function ($scope, $routeParams, $http) {
         $scope.channelId = $routeParams.channelId;
 		
@@ -22,4 +22,17 @@ watchlistControllers.controller('ChannelDetailCtrl', ['$scope', '$routeParams', 
             $scope.result = JSON.stringify(data);
         });
     }
+]);
+
+watchlistControllers.controller('PlaylistDetailsCtrl', ['$scope', '$routeParams', '$http',
+	function ($scope, $routeParams, $http) {
+		$scope.playlistId = $routeParams.playlistId;
+		
+		var dataurl =  "https://www.googleapis.com/youtube/v3/playlistItems?part=id%2Csnippet%2CcontentDetails%2Cstatus&playlistId="+ $routeParams.playlistId + "&key=AIzaSyCUvP3-ZZ_zLOY2eMODHbNrDKR0Mwd20r4";
+		
+		$http.get(dataurl).success(function(data){
+            $scope.videos = data.items;
+            $scope.result = JSON.stringify(data);
+        });
+	}
 ]);

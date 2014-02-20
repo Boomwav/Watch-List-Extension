@@ -15,9 +15,13 @@ watchlistApp.config(['$routeProvider',
                 controller: 'ChannelLibraryCtrl'
             }).
             when('/channels/:channelId', {
-                templateUrl: 'partials/channel-detail.html',
-                controller: 'ChannelDetailCtrl'
+                templateUrl: 'partials/channel-details.html',
+                controller: 'ChannelDetailsCtrl'
             }).
+			when('/playlists/:playlistId', {
+				templateUrl:'partials/playlist-details.html',
+				controller:'PlaylistDetailsCtrl'
+			}).
             otherwise({
                 redirectTo: '/channels'
             });

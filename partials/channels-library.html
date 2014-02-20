@@ -15,7 +15,7 @@
 		</thead>
 		<tbody>
 		<tr ng-repeat="playlist in playlists">
-			<td><a href="http://www.youtube.com/playlist?list={{playlist.id}}" target="_blank">{{playlist.snippet.title}}</a></td>
+			<td><a href="#/playlists/{{playlist.id}}">{{playlist.snippet.title}}</a></td>
 			<td><a ng-href="#/channels/{{playlist.snippet.channelId}}">{{playlist.snippet.channelTitle}}</a></td>
 			<td>{{playlist.snippet.publishedAt}}</td>
 		</tr>

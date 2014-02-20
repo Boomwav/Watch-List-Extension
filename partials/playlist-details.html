@@ -1,0 +1,29 @@
+<nav class="navbar navbar-default" role="navigation">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="#"><img src="Watch-List-48.png"/></a>
+		<p class="navbar-text"><a href="#/channels/" class="navbar-link"><span class="glyphicon glyphicon-chevron-left"></span> Return</a></p>
+	</div>
+</nav>
+	
+<section>
+	<table class="table table-hover">
+		<thead>
+		<tr>
+			<th></th>
+			<th>Title</th>
+			<th>Channel</th>
+			<th>Published At</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr ng-repeat="video in videos">
+			<td><a ng-href="http://www.youtube.com/watch?v={{video.snippet.resourceId.videoId}}" target="_blank"><img ng-src="{{video.snippet.thumbnails.default.url}}" /></a></td>
+			<td><a ng-href="http://www.youtube.com/watch?v={{video.snippet.resourceId.videoId}}" target="_blank">{{video.snippet.title}}</a></td>
+			<td><a ng-href="#/channels/{{video.snippet.channelId}}">{{playlist.snippet.channelTitle}}</a></td>
+			<td>{{video.snippet.publishedAt}}</td>
+		</tr>
+		</tbody>
+	</table>
+</section>
+
+<div id="search-container"><pre>Result: {{result}}</pre></div>
