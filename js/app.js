@@ -3,6 +3,15 @@ var watchlistApp = angular.module('watchlistApp', [
     'watchlistControllers'
 ]);
 
+watchlistApp.factory('utilityService', function() {
+   return {
+        back: function() {
+            console.log('back button');
+            window.history.back();
+        }
+   } ;
+});
+
 watchlistApp.config( function ($compileProvider) {
     $compileProvider.aHrefSanitizationWhitelist (/^\s*(https?|ftp|mailto|file|tel|chrome-extension):/);
 });
@@ -10,6 +19,10 @@ watchlistApp.config( function ($compileProvider) {
 watchlistApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
+            when('/watchlist', {
+                templateUrl: 'partials/watch-list.html',
+                controller: 'WatchlistCtrl'
+            }).
             when('/channels', {
                 templateUrl: 'partials/channels-library.html',
                 controller: 'ChannelLibraryCtrl'
@@ -23,7 +36,7 @@ watchlistApp.config(['$routeProvider',
 				controller:'PlaylistDetailsCtrl'
 			}).
             otherwise({
-                redirectTo: '/channels'
+                redirectTo: '/watchlist'
             });
     }
 ]);

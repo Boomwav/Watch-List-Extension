@@ -1,0 +1,31 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"><img src="Watch-List-48.png"/></a>
+        </div>
+
+        <form class="navbar-form navbar-right" ng-submit="addItem()">
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="newPlaylistId" placeholder="YouTube URL">
+            </div>
+            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+        </form>
+
+
+    </div>
+</nav>
+
+<section>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Playlist</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in items">
+            <td><a href="#/playlists/{{item.id}}">{{item.snippet.title}}</a></td>
+        </tr>
+        </tbody>
+    </table>
+</section>

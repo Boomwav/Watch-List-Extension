@@ -1,9 +1,14 @@
 body 
 {
 	min-width:300px !important;
+    padding-top: 70px;
 }
 
 /* Removing the padding from the .navbar-brand to allow the logo to work. */
 .navbar-brand {
   padding: 0 !important;
+}
+
+.navbar-link {
+    cursor: pointer;
 }
