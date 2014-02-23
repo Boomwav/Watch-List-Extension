@@ -10,8 +10,6 @@
             </div>
             <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
         </form>
-
-
     </div>
 </nav>
 
@@ -20,11 +18,13 @@
         <thead>
         <tr>
             <th>Playlist</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="item in items">
+        <tr ng-repeat="item in items" ng-mouseenter="hover = true" ng-mouseleave="hover = false">
             <td><a href="#/playlists/{{item.id}}">{{item.snippet.title}}</a></td>
+            <td class="deleteColumn"><a class="trash" ng-class="{hoverButton: !hover}" ng-click="deleteItem(item.id)"><span class="glyphicon glyphicon-trash"></span></a></td>
         </tr>
         </tbody>
     </table>

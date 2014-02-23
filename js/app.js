@@ -1,7 +1,9 @@
 var watchlistApp = angular.module('watchlistApp', [
     'ngRoute',
-    'watchlistControllers'
+    'watchlistApp.controllers'
 ]);
+
+angular.module('watchlistApp.controllers', []);
 
 watchlistApp.factory('utilityService', function() {
    return {

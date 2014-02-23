@@ -1,7 +1,7 @@
 body 
 {
 	min-width:300px !important;
-    padding-top: 70px;
+    padding-top: 50px;
 }
 
 /* Removing the padding from the .navbar-brand to allow the logo to work. */
@@ -11,4 +11,17 @@ body
 
 .navbar-link {
     cursor: pointer;
+}
+
+.trash {
+    transition: all 0.1s ease-in-out;
+    cursor: pointer;
+}
+
+.hoverButton {
+    opacity: 0;
+}
+
+.deleteColumn {
+    width: 15px;
 }
