@@ -6,7 +6,7 @@
     "version": "0.1.1",
 
     "permissions": [
-    "tabs",
+    "activeTab",
     "http://www.youtube.com/*list=*"
     ],
 
@@ -16,12 +16,7 @@
     },
 
     "browser_action": {
-    "default_icon": "Watch-List-19.png",
-    "default_popup": "popup.html"
-    },
-
-    "web_accessible_resources" :[
-        "channel-detail.html",
-        "channels-library.html"
-    ]
+        "default_icon": "Watch-List-19.png",
+        "default_popup": "popup.html"
+    }
 }
