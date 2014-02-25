@@ -14,6 +14,9 @@ watchlistApp.factory('utilityService', function() {
    } ;
 });
 
+
+
+
 watchlistApp.config( function ($compileProvider) {
     $compileProvider.aHrefSanitizationWhitelist (/^\s*(https?|ftp|mailto|file|tel|chrome-extension):/);
 });
@@ -42,4 +45,40 @@ watchlistApp.config(['$routeProvider',
             });
     }
 ]);
+
+watchlistApp.run(function($rootScope, $location) {
+    // register listener to watch route changes
+    $rootScope.$on( "$routeChangeStart", function(event, next, current) {
+        //console.log("current === null --> " + (current == null) + " value: " + current);
+        //console.log("next.redirectTo == /watchlist --> " + (next.redirectTo == "/watchlist") + " value: " + next.redirectTo);
+
+        if(current == null && next.redirectTo == "/watchlist")
+        {
+            console.log("Opening extension popup for the first time!");
+
+            chrome.tabs.getSelected(null, function(tab){
+                console.log(tab.url);
+                var uri = new URI(tab.url);
+
+                console.log(uri.hostname());
+                if(uri.hostname() == "www.youtube.com"){
+                    console.log(uri.search(true).list);
+                    $rootScope.autoAddList = uri.search(true).list;
+                }
+
+
+            });
+        }
+
+        /*if ( $rootScope.loggedUser == null ) {
+            // no logged user, we should be going to #login
+            if ( next.templateUrl == "partials/login.html" ) {
+                // already going to #login, no redirect needed
+            } else {
+                // not going to #login, we should redirect now
+                $location.path( "/login" );
+            }
+        }*/
+    });
+});
 

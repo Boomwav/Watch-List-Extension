@@ -1,3 +1,3 @@
-chrome.tabs.getSelected(null, function(tab){
+/*chrome.tabs.getSelected(null, function(tab){
     console.log(tab);
-});
+});*/
