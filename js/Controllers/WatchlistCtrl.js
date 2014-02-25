@@ -1,10 +1,13 @@
-angular.module('watchlistApp.controllers').controller('WatchlistCtrl', ['$scope', '$http',
-    function ($scope, $http) {
+angular.module('watchlistApp.controllers').controller('WatchlistCtrl', ['$scope', '$http', '$rootScope', 'youtubeApiService',
+    function ($scope, $http, $rootScope, youtubeApiService) {
         $scope.items = '';
 
         var initCallback = function() {
             getItems();
-            //$scope.newPlaylistId = 'PLs3acGYgI1-vpuBtw49UXezQrs1AFCFB1';
+			if($rootScope.autoAddList != null)
+			{
+				$scope.newPlaylistId = $rootScope.autoAddList;
+			}
         };
 
         var parameters = {
@@ -35,13 +38,19 @@ angular.module('watchlistApp.controllers').controller('WatchlistCtrl', ['$scope'
         };
 
         $scope.addItem = function() {
-
+			
             var dataurl = "https://www.googleapis.com/youtube/v3/playlists?part=id,snippet&id="+ $scope.newPlaylistId + "&key=AIzaSyCUvP3-ZZ_zLOY2eMODHbNrDKR0Mwd20r4";
 
-            $http.get(dataurl).success(function(data){
+			var success = function(data){
                 dataStore.put(data.items[0], getItems, errorCallback);
                 $scope.result = JSON.stringify(data);
-            });
+            };
+			
+			var error = function() {
+				console.log("Error while trying to get playlist with id '" + $scope.newPlaylistId + "' using the YouTube API");
+			}
+			
+            youtubeApiService.getPlaylist($scope.newPlaylistId, success, error );
 
             $scope.newPlaylistId = '';
         };
