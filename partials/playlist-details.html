@@ -20,11 +20,11 @@
 <section>
 	<table class="table table-hover">
 		<tbody>
-		<tr ng-repeat="video in videos">
+		<tr ng-repeat="video in playlist.videos.items | filter:isNotWatched">
 			<td><a ng-href="http://www.youtube.com/watch?v={{video.snippet.resourceId.videoId}}" target="_blank"><img ng-src="{{video.snippet.thumbnails.default.url}}" width="72" /></a></td>
 			<td><a ng-href="http://www.youtube.com/watch?v={{video.snippet.resourceId.videoId}}" target="_blank">{{video.snippet.title}}</a></td>
 			<td><a ng-href="#/channels/{{video.snippet.channelId}}">{{playlist.snippet.channelTitle}}</a></td>
-			<td>{{video.contentDetails.duration}}</td>
+			<td><a ng-click="markAsWatched(video)">Mark as watched</a></td>
 		</tr>
 		</tbody>
 	</table>

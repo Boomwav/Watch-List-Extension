@@ -4,10 +4,61 @@ angular.module('watchlistApp.controllers').controller('PlaylistDetailsCtrl', ['$
             utilityService.back();
         }
 
+        $scope.markAsWatched = function(video) {
+
+            var currentIndex = $scope.playlist.videos.items.indexOf(video);
+
+            console.log(currentIndex);
+
+            if(currentIndex != -1)
+            {
+                console.log("Mark " + currentIndex + " as watched.");
+                $scope.playlist.videos.items[currentIndex].watched = true;
+                dataStore.put($scope.playlist);
+            }
+        }
+
+        $scope.isWatched = function(row)  {
+            return (row.hasOwnProperty('watched') && row.watched == true);
+        }
+
+        $scope.isNotWatched = function(row)  {
+            return !row.hasOwnProperty('watched') || ( row.hasOwnProperty('watched') &&  !row.watched);
+        }
+
         $scope.playlistId = $routeParams.playlistId;
 
+        var initCallback = function() {
+            getItem($scope.playlistId);
+        };
+
+        var parameters = {
+            storeName: 'watchlist',
+            storePrefix: 'Watchlist-',
+            dbVersion: 1,
+            keyPath: 'id',
+            autoIncrement: false,
+            indexes: [],
+            onStoreReady: initCallback,
+            onError: function(error){ throw error; }
+        }
+
+        var dataStore = new IDBStore(parameters);
+
+        var getItem = function (playlistId) {
+            console.log('getItem("' + playlistId + '")');
+            dataStore.get(playlistId, function(data) {
+                console.log('getItem -- Result --')
+                console.log(data);
+                $scope.playlist = data;
+                $scope.$apply();
+            }, function() {
+                console.log('An error occured.');
+            })
+        }
+
         //https://www.googleapis.com/youtube/v3/playlistItems?part=id%2Csnippet%2CcontentDetails%2Cstatus&playlistId=PLs3acGYgI1-vpuBtw49UXezQrs1AFCFB1&key=AIzaSyCUvP3-ZZ_zLOY2eMODHbNrDKR0Mwd20r4
-        var dataurl =  "https://www.googleapis.com/youtube/v3/playlistItems?part=id%2Csnippet%2CcontentDetails%2Cstatus&playlistId="+ $routeParams.playlistId + "&key=AIzaSyCUvP3-ZZ_zLOY2eMODHbNrDKR0Mwd20r4";
+        /*var dataurl =  "https://www.googleapis.com/youtube/v3/playlistItems?part=id%2Csnippet%2CcontentDetails%2Cstatus&playlistId="+ $routeParams.playlistId + "&key=AIzaSyCUvP3-ZZ_zLOY2eMODHbNrDKR0Mwd20r4";
 
         $http.get(dataurl).success(function(data){
 
@@ -39,6 +90,6 @@ angular.module('watchlistApp.controllers').controller('PlaylistDetailsCtrl', ['$
 
 
 
-        });
+        });*/
     }
 ]);

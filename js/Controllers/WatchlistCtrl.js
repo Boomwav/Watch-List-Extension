@@ -19,7 +19,7 @@ angular.module('watchlistApp.controllers').controller('WatchlistCtrl', ['$scope'
             indexes: [],
             onStoreReady: initCallback,
             onError: function(error){ throw error; }
-        }
+        };
 
         var dataStore = new IDBStore(parameters);
 
@@ -39,11 +39,14 @@ angular.module('watchlistApp.controllers').controller('WatchlistCtrl', ['$scope'
 
         $scope.addItem = function() {
 			
-            var dataurl = "https://www.googleapis.com/youtube/v3/playlists?part=id,snippet&id="+ $scope.newPlaylistId + "&key=AIzaSyCUvP3-ZZ_zLOY2eMODHbNrDKR0Mwd20r4";
-
 			var success = function(data){
-                dataStore.put(data.items[0], getItems, errorCallback);
-                $scope.result = JSON.stringify(data);
+
+                youtubeApiService.getPlaylistVideos(data.items[0].id,
+                    function(videosData) {
+                        data.items[0].videos = videosData;
+                        dataStore.put(data.items[0], getItems, errorCallback);
+                        $scope.result = JSON.stringify(data);
+                    }, errorCallback);
             };
 			
 			var error = function() {
