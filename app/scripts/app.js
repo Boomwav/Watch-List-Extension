@@ -1,7 +1,7 @@
 var watchlistApp = angular.module('watchlistApp', [
     'ngRoute',
     'watchlistApp.controllers',
-	'watchlistApp.services'
+    'watchlistApp.services'
 ]);
 
 angular.module('watchlistApp.controllers', []);
@@ -16,12 +16,9 @@ watchlistApp.factory('utilityService', function() {
    } ;
 });
 
-
-
-
-watchlistApp.config( function ($compileProvider) {
+watchlistApp.config(["$compileProvider", function ($compileProvider) {
     $compileProvider.aHrefSanitizationWhitelist (/^\s*(https?|ftp|mailto|file|tel|chrome-extension):/);
-});
+}]);
 
 watchlistApp.config(['$routeProvider',
     function($routeProvider) {
@@ -48,7 +45,7 @@ watchlistApp.config(['$routeProvider',
     }
 ]);
 
-watchlistApp.run(function($rootScope, $location) {
+watchlistApp.run(["$rootScope", "$location", function($rootScope, $location) {
     // register listener to watch route changes
     $rootScope.$on( "$routeChangeStart", function(event, next, current) {
         //console.log("current === null --> " + (current == null) + " value: " + current);
@@ -82,5 +79,5 @@ watchlistApp.run(function($rootScope, $location) {
             }
         }*/
     });
-});
+}]);
 
