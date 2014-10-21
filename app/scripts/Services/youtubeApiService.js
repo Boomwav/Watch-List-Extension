@@ -1,6 +1,6 @@
 
 
-angular.module('watchlistApp.services')
+angular.module('watchlistApp')
 
     .service('youtubeApiService', ['$http', function($http) {
 

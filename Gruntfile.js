@@ -61,10 +61,7 @@ module.exports = function (grunt) {
       },
       js: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
-        tasks: ['newer:jshint:all', 'copy:dev'],
-        options: {
-          livereload: '<%= connect.options.livereload %>'
-        }
+        tasks: ['newer:copy:dev','newer:jshint:all']
       },
       jsTest: {
         files: ['test/spec/{,*/}*.js'],
@@ -539,7 +536,7 @@ module.exports = function (grunt) {
       'copy:dev',
       'coffee',
       'jade:compile',
-      'connect:livereload',
+//    'connect:livereload',
       'watch'
     ]);
   });
@@ -583,6 +580,8 @@ module.exports = function (grunt) {
     'autoprefixer',
     'concat',
     'copy:dev',
+    'coffee',
+    'jade',
     'copy:bower'
   ]);
 
@@ -592,6 +591,6 @@ module.exports = function (grunt) {
     'build'
   ]);
   
-  grunt.loadNpmTasks("grunt-contrib-jade");
+  grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-contrib-compass');
 };

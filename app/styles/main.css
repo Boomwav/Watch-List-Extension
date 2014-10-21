@@ -1,7 +1,8 @@
 body 
 {
 	min-width:300px !important;
-    padding-top: 50px;
+  height: 405px !important;
+  padding-top: 50px;
 }
 
 /* Removing the padding from the .navbar-brand to allow the logo to work. */
@@ -24,4 +25,8 @@ body
 
 .deleteColumn {
     width: 15px;
+}
+
+.table {
+  margin-bottom: 0px !important; 
 }

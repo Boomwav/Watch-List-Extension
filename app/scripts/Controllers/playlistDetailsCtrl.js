@@ -1,4 +1,4 @@
-angular.module('watchlistApp.controllers').controller('PlaylistDetailsCtrl', ['$scope', '$routeParams', '$http', 'utilityService',
+angular.module('watchlistApp').controller('PlaylistDetailsCtrl', ['$scope', '$routeParams', '$http', 'utilityService',
     function ($scope, $routeParams, $http, utilityService) {
         $scope.goBack = function() {
             utilityService.back();

@@ -1,4 +1,4 @@
-angular.module('watchlistApp.controllers').controller('ChannelDetailsCtrl', ['$scope', '$routeParams', '$http',
+angular.module('watchlistApp').controller('ChannelDetailsCtrl', ['$scope', '$routeParams', '$http',
     function ($scope, $routeParams, $http) {
         $scope.channelId = $routeParams.channelId;
 
