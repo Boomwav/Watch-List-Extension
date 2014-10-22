@@ -1,4 +1,4 @@
-var watchlistApp = angular.module('watchlistApp', ['ngRoute']);
+var watchlistApp = angular.module('watchlistApp', ['ngRoute', 'LocalStorageModule']);
 
 watchlistApp.factory('utilityService', function() {
   return {
@@ -41,8 +41,6 @@ watchlistApp.config(['$routeProvider',
 watchlistApp.run(["$rootScope", "$location", function($rootScope, $location) {
   // register listener to watch route changes
   $rootScope.$on( "$routeChangeStart", function(event, next, current) {
-  //console.log("current === null --> " + (current == null) + " value: " + current);
-  //console.log("next.redirectTo == /watchlist --> " + (next.redirectTo == "/watchlist") + " value: " + next.redirectTo);
 
     if(current == null && next.redirectTo == "/watchlist"){
       console.log("Opening extension popup for the first time!");
@@ -58,16 +56,6 @@ watchlistApp.run(["$rootScope", "$location", function($rootScope, $location) {
         }
       });
     }
-
-    /*if ( $rootScope.loggedUser == null ) {
-      // no logged user, we should be going to #login
-      if ( next.templateUrl == "partials/login.html" ) {
-        // already going to #login, no redirect needed
-      } else {
-        // not going to #login, we should redirect now
-        $location.path( "/login" );
-      }
-    }*/
   });
 }]);
 

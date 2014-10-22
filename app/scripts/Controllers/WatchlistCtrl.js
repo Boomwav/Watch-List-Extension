@@ -1,12 +1,19 @@
-angular.module('watchlistApp').controller('WatchlistCtrl', ['$scope', '$http', '$rootScope', 'youtubeApiService', 'YouTube',
-  function ($scope, $http, $rootScope, youtubeApiService, YouTube) {
+angular.module('watchlistApp').controller('WatchlistCtrl', ['$scope', '$http', '$rootScope', 'youtubeApiService', 'WatchList', 'YouTube',
+  function ($scope, $http, $rootScope, youtubeApiService, WatchList, YouTube) {
     $scope.items = '';
   
     $scope.playlistData = {};
-    YouTube.getPlaylist('PLH-huzMEgGWB5MGtt06KSPgFu6z4ORn7M')
+    /*YouTube.getPlaylist('PLH-huzMEgGWB5MGtt06KSPgFu6z4ORn7M')
       .then(function(data) {
         console.log(data);
-      });
+      });*/
+      
+    $scope.watchlist = WatchList;
+    
+    //console.log(WatchList.nbPlaylists);
+    
+    //WatchList.addPlaylist('PLH-huzMEgGWB5MGtt06KSPgFu6z4ORn7M');
+    //console.log(WatchList.playlists);
     
     var initCallback = function() {
       
@@ -34,8 +41,8 @@ angular.module('watchlistApp').controller('WatchlistCtrl', ['$scope', '$http', '
     var getItemsSuccess = function(data){
         $scope.items = data;
         
-        console.log('getItems -- Result --')
-        console.log(data);
+        /*console.log('getItems -- Result --')
+        console.log(data);*/
         
         $scope.$apply();
     };
@@ -49,7 +56,7 @@ angular.module('watchlistApp').controller('WatchlistCtrl', ['$scope', '$http', '
     };
 
     $scope.addItem = function() {
-      var success = function(data){
+      /*var success = function(data){
         youtubeApiService.getPlaylistVideos(data.items[0].id, function(videosData) {
           data.items[0].videos = videosData;
           dataStore.put(data.items[0], getItems, errorCallback);
@@ -61,14 +68,16 @@ angular.module('watchlistApp').controller('WatchlistCtrl', ['$scope', '$http', '
         console.log("Error while trying to get playlist with id '" + $scope.newPlaylistId + "' using the YouTube API");
       }
       
-      youtubeApiService.getPlaylist($scope.newPlaylistId, success, error );
+      youtubeApiService.getPlaylist($scope.newPlaylistId, success, error );*/
+      
+      WatchList.addPlaylist($scope.newPlaylistId);
 
       $scope.newPlaylistId = '';
     };
 
     $scope.deleteItem = function (id) {
       console.log("Delete item: " + id);
-      dataStore.remove(id, getItems, errorCallback);
+      WatchList.deletePlaylist(id);
     };
   }
 ]);

@@ -23,14 +23,14 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="item in items" ng-mouseenter="hover = true" ng-mouseleave="hover = false">
-            <td><a href="#/playlists/{{item.id}}">{{item.snippet.title}}</a></td>
+        <tr ng-repeat="playlist in watchlist.playlists track by playlist.id" ng-mouseenter="hover = true" ng-mouseleave="hover = false">
+            <td><a href="#/playlists/{{playlist.id}}">{{playlist.snippet.title}}</a></td>
             <td><div class="progress">
               <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
-                {{item.contentDetails.itemCount}}%
+                {{playlist.contentDetails.itemCount}}%
               </div>
             </div>
-            <td class="deleteColumn"><a class="trash" ng-class="{hoverButton: !hover}" ng-click="deleteItem(item.id)"><span class="glyphicon glyphicon-trash"></span></a></td>
+            <td class="deleteColumn"><a class="trash" ng-class="{hoverButton: !hover}" ng-click="deleteItem(playlist.id)"><span class="glyphicon glyphicon-trash"></span></a></td>
         </tr>
         </tbody>
     </table>

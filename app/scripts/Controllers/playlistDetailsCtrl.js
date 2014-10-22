@@ -1,9 +1,11 @@
-angular.module('watchlistApp').controller('PlaylistDetailsCtrl', ['$scope', '$routeParams', '$http', 'utilityService',
-    function ($scope, $routeParams, $http, utilityService) {
+angular.module('watchlistApp').controller('PlaylistDetailsCtrl', ['$scope', '$routeParams', '$http', 'utilityService', 'YouTube',
+    function ($scope, $routeParams, $http, utilityService, YouTube) {
         $scope.goBack = function() {
             utilityService.back();
         }
-
+        
+        
+        
         $scope.markAsWatched = function(video) {
 
             var currentIndex = $scope.playlist.videos.items.indexOf(video);
@@ -46,15 +48,11 @@ angular.module('watchlistApp').controller('PlaylistDetailsCtrl', ['$scope', '$ro
         var dataStore = new IDBStore(parameters);
 
         var getItem = function (playlistId) {
-            console.log('getItem("' + playlistId + '")');
-            dataStore.get(playlistId, function(data) {
-                console.log('getItem -- Result --')
-                console.log(data);
-                $scope.playlist = data;
-                $scope.$apply();
-            }, function() {
-                console.log('An error occured.');
-            })
+          console.log('getItem("' + playlistId + '")');
+          YouTube.getPlaylistVideos(playlistId).then(function(data){
+            $scope.playlist = data;
+            console.log('It worked! There is ' + data.length + ' items.');
+          });
         }
 
         //https://www.googleapis.com/youtube/v3/playlistItems?part=id%2Csnippet%2CcontentDetails%2Cstatus&playlistId=PLs3acGYgI1-vpuBtw49UXezQrs1AFCFB1&key=AIzaSyCUvP3-ZZ_zLOY2eMODHbNrDKR0Mwd20r4
