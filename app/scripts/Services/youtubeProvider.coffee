@@ -30,7 +30,7 @@ angular.module('watchlistApp').provider 'YouTube', ->
             
       $http(        
         method: 'GET',
-        url: getPlaylistVideosUrl('id,snippet,contentDetails,status', playlistId, pageToken)
+        url: getPlaylistVideosUrl('id,snippet', playlistId, pageToken)
         cache: true)
       
       .success (data, status, headers, config) ->

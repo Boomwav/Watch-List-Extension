@@ -23,7 +23,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="playlist in watchlist.playlists track by playlist.id" ng-mouseenter="hover = true" ng-mouseleave="hover = false">
+        <tr ng-repeat="playlist in WatchList track by playlist.id" ng-mouseenter="hover = true" ng-mouseleave="hover = false">
             <td><a href="#/playlists/{{playlist.id}}">{{playlist.snippet.title}}</a></td>
             <td><div class="progress">
               <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
